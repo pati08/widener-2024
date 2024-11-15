@@ -75,23 +75,8 @@ def p7():
 
 def p8():
     def arrange_seats(seats: int, aisles: int):
-        if aisles == 1: return [(seats + 1) // 2, seats // 2]
-        res = [0 for _ in range(aisles + 1)]
-
-        for i in range(1, aisles + 2):
-            row = (i % (aisles + 1)) - 1
-            res[row] += 1
-            seats -= 1
-
-        for i in range(1, min(aisles, seats + 1)):
-            row = i % (aisles - 1) + 1
-            res[row] += 1
-            seats -= 1
-
-        for i in range(1, seats + 1):
-            row = (i % (aisles + 1)) - 1
-            res[row] += 1
-
+        res =  [seats // (aisles + 1) + max(0, ((seats % (aisles + 1)) - i + 1)) for i in range(1, aisles + 2)]
+        res.insert(0, res.pop())
         return res
 
     def side_incon(n):
@@ -145,4 +130,4 @@ def p10():
             total += 1
     print(total)
 
-p6()
+p8()
