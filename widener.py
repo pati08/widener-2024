@@ -1,5 +1,55 @@
-from math import factorial
+from math import factorial, sqrt
 import re
+
+def p1():
+    ins = input().split(" ")
+    a = float(ins[0])
+    b = float(ins[1])
+    c = float(ins[2])
+
+    s = (a + b + c) / 2.0
+
+    r = sqrt(s * (s - a) * (s - b) * (s - c))
+    print(round(r, 2))
+
+def p2():
+    ins = input().split(" ")
+    a = float(ins[0])
+    b = float(ins[1])
+
+    print(round(a / b, 2))
+
+def p3():
+    ins = input().split(" ")
+    a = float(ins[0])
+    b = float(ins[1])
+    c = float(ins[2])
+
+    price = a * c
+    nod = 1.0 - (0.2 * b)
+    print(round(price * nod, 2))
+
+def p4():
+    ins = input().split(" ")
+    a = float(ins[0])
+    b = float(ins[1])
+
+    res = str(round(a / b, 2)) + " "
+    if a / b > 0.75:
+        res += "NO"
+    else:
+        res += "YES"
+    
+    print(res)
+
+def p5():
+    ins = list(input())
+    total = 0
+    for c in ins:
+        if c == 'y': total += 2
+        if c == 'g': total += 1
+        if c == 'r': total += 3
+    print(total)
 
 def p6():
     txt = input()
@@ -11,6 +61,17 @@ def p6():
         else:
             break
     print(txt)
+
+def p7():
+    ins = [int(i) for i in input().split(" ")]
+    ins.pop(0)
+    sortedins = ins.copy()
+    sortedins.sort()
+    total = 0
+    for i in range(len(ins)):
+        idx = sortedins.index(ins[i])
+        total += abs(idx - i)
+    print(total)
 
 def p8():
     def arrange_seats(seats: int, aisles: int):
@@ -68,3 +129,17 @@ def p8():
     inconvenience = calculate_inconvenience(arrangements)
     num_possibilities = calculate_num_possibilities(*p8in)
     print(f"There are {num_possibilities} ways to achieve {inconvenience} inconvenience!")
+
+def p10():
+    ins = input().split(" ")
+    b = float(ins[0])
+    d = float(ins[1])
+
+    total = 0
+    for i in range(int((b * b) / d)):
+        a = i + 1
+        c = round(((b / d) - (a / b)) * d, 6)
+        if c == 0: continue
+        if int(c) == c:
+            total += 1
+    print(total)
