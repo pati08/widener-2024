@@ -1,6 +1,17 @@
 from math import factorial
 import re
 
+def p6():
+    txt = input()
+    while True:
+        m = re.search(r"((?:[A-Z][a-z]+ )+(?:[A-Z][a-z]+))", txt)
+        if m is not None:
+            s = m.span()
+            txt = txt[0:s[0]] + str.join("", [w[0] for w in m.group().split(" ")]) + txt[s[1]:]
+        else:
+            break
+    print(txt)
+
 def p8():
     def arrange_seats(seats: int, aisles: int):
         if aisles == 1: return [(seats + 1) // 2, seats // 2]
@@ -57,23 +68,3 @@ def p8():
     inconvenience = calculate_inconvenience(arrangements)
     num_possibilities = calculate_num_possibilities(*p8in)
     print(f"There are {num_possibilities} ways to achieve {inconvenience} inconvenience!")
-
-# p8()
-
-def p6():
-    txt = input()
-    while True:
-        m = re.search(r"((?:[A-Z][a-z]+ )+(?:[A-Z][a-z]+))", txt)
-        if m is not None:
-            s = m.span()
-            txt = txt[0:s[0]] + str.join("", [w[0] for w in m.group().split(" ")]) + txt[s[1]:]
-        else:
-            break
-    print(txt)
-
-# p6()
-
-def p9():
-    pass
-
-p9()
