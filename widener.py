@@ -54,10 +54,10 @@ def p5():
 def p6():
     txt = input()
     while True:
-        m = re.search(r"((?:[A-Z][a-z]+ )+(?:[A-Z][a-z]+))", txt)
+        m = re.search(r"\b([A-Z][a-z]+ )+[A-Z][a-z]+\b", txt)
         if m is not None:
             s = m.span()
-            txt = txt[0:s[0]] + str.join("", [w[0] for w in m.group().split(" ")]) + txt[s[1]:]
+            txt = txt[0:s[0]] + str.join("", [w[0] for w in m.group().strip().split(" ")]) + txt[s[1]:]
         else:
             break
     print(txt)
@@ -128,7 +128,8 @@ def p8():
     arrangements = arrange_seats(*p8in)
     inconvenience = calculate_inconvenience(arrangements)
     num_possibilities = calculate_num_possibilities(*p8in)
-    print(f"There are {num_possibilities} ways to achieve {inconvenience} inconvenience!")
+    # print(f"There are {num_possibilities} ways to achieve {inconvenience} inconvenience!")
+    print(f"{int(inconvenience)} {num_possibilities}")
 
 def p10():
     ins = input().split(" ")
@@ -143,3 +144,5 @@ def p10():
         if int(c) == c:
             total += 1
     print(total)
+
+p6()
